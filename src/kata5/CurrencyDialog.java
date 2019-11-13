@@ -14,6 +14,7 @@ import javax.swing.JPanel;
  */
 public class CurrencyDialog extends JPanel {
     
+    
      public CurrencyDialog(){
         super();
         add(createCombobox());
