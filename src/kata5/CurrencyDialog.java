@@ -5,9 +5,9 @@
  */
 package kata5;
 
+import java.awt.PopupMenu;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-
 /**
  *
  * @author Alber
