@@ -7,6 +7,7 @@ package Main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,6 +27,9 @@ public class Kata5 {
             connection = DriverManager.getConnection(URL_BD_SQLite);
             System.out.println("Base de datos conectada...");
             selectData_PEOPLE(connection);
+            insertData_PEOPLE(connection);
+            System.out.print("\n");
+            selectData_PEOPLE(connection);
         }
         catch(SQLException exception){
             System.out.println("Error Kata5 ::Connect " + exception.getMessage());
@@ -43,6 +47,21 @@ public class Kata5 {
         return connection;
     }
 
+    private static void insertData_PEOPLE(Connection connection) {
+        String SQL = "INSERT INTO PEOPLE(ID,NOMBRE,APELLIDOS,DEPARTAMENTO) values (?,?,?,?)";
+        try{
+            PreparedStatement preparedstatement = connection.prepareStatement(SQL);
+            preparedstatement.setInt(1,25);
+            preparedstatement.setString(2, "Juan");
+            preparedstatement.setString(3, "Pepe");
+            preparedstatement.setString(4, "Tomas");
+            preparedstatement.executeUpdate();
+        }
+        catch(SQLException exception){
+            System.out.println("Error Kata5 ::insertData_PEOPLE " + exception.getMessage());
+        }
+    }
+    
     private static void selectData_PEOPLE(Connection connection) {
         String SQL = "SELECT * FROM PEOPLE";
         try{
